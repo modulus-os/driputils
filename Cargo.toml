@@ -5,5 +5,8 @@ description = "A library for working with Drip module format"
 authors = ["Sam Harrison <epicpotatopro@gmail.com>"]
 
 [[bin]]
-name = "dripl"
-path = "src/bin/dripl.rs"
+name = "drip"
+path = "src/bin/drip.rs"
+
+[dependencies]
+term = "*"

@@ -1,5 +1,3 @@
-#![feature(rustc_private)]
-
 use std::env;
 use std::io::prelude::*;
 use std::fs::File;
@@ -13,20 +11,19 @@ mod help {
         let mut t = term::stdout().unwrap();
 
         t.fg(term::color::BRIGHT_CYAN).unwrap();
-        println!("     ____       _       __
-    / __ \\_____(_)___  / /
-   / / / / ___/ / __ \
-                  \\/ /
-  / /_/ / /  / / /_/ / /___
- /_____/_/  /_/ .___/_____/
-            /_/");
+        println!("     ____       _ 
+    / __ \\_____(_)___ 
+   / / / / ___/ / __ \\ 
+  / /_/ / /  / / /_/ /
+ /_____/_/  /_/ .___/
+           /_/");
         t.fg(term::color::BRIGHT_WHITE).unwrap();
         println!("A tool for linking Drip modules\n");
 
         t.fg(term::color::BRIGHT_GREEN).unwrap();
         println!("Usage:");
         t.fg(term::color::BRIGHT_WHITE).unwrap();
-        println!("	dripl <command> [file] [options]\n");
+        println!("	drip <command> [file] [options]\n");
 
         t.fg(term::color::BRIGHT_GREEN).unwrap();
         println!("Options:");
@@ -36,7 +33,7 @@ mod help {
         t.fg(term::color::BRIGHT_GREEN).unwrap();
         println!("Commands:");
         t.fg(term::color::BRIGHT_WHITE).unwrap();
-        println!("	link		Links a flat binary file as a Drip module\n");
+        println!("	gen		Generates a Drip module\n");
     }
 
     pub fn error(diagnostic: String) {
@@ -58,7 +55,7 @@ fn main() {
     }
 
     match args[1].as_ref() {
-        "link" => link(args.clone()),
+        "gen" => gen(args.clone()),
         _ => {
             let mut diagnostic = String::from("Unknown command: ");
             diagnostic.push_str(args[1].as_ref());
@@ -67,7 +64,7 @@ fn main() {
     }
 }
 
-fn link(args: Vec<String>) {
+fn gen(args: Vec<String>) {
 	let mut t = term::stdout().unwrap();
 
     if args.len() < 3 {
@@ -87,7 +84,7 @@ fn link(args: Vec<String>) {
 	f.unwrap().read_to_string(&mut file);
 
 	t.fg(term::color::BRIGHT_GREEN).unwrap();
-	println!("Linking...");
+	println!("Generating...");
 
     return;
 }
